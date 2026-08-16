@@ -4,7 +4,7 @@
 
 面向 DSH Web UI 的明日香 / EVA 二号机主题皮肤。设计语言采用信号红、碳黑装甲、同步率绿、扫描线与驾驶舱 HUD。
 
-![暗色模式预览](preview/dark.webp)
+![暗色模式预览](preview/readme.png)
 
 ## 特性
 
