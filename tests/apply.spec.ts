@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import vm from 'node:vm'
 import { activateSkin, apply } from '../shared/runtime.js'
+import { ASUKA_CSS } from '../shared/theme-css.js'
 
 let dispose: (() => void) | undefined
 
@@ -75,5 +76,12 @@ describe('Asuka interface skin', () => {
       name: 'dsh-skin-asuka',
     })
     expect(document.body.hasAttribute('data-dsh-asuka-interface')).toBe(false)
+  })
+
+  it('isolates settings colors from the dark sidebar', () => {
+    expect(ASUKA_CSS).toContain("[data-slot='sidebar.settings']")
+    expect(ASUKA_CSS).toContain('--dsw-alias-label-primary: #2a171a;')
+    expect(ASUKA_CSS).toContain('--dsw-alias-bg-base: #f5efea;')
+    expect(ASUKA_CSS).toContain('--dsw-alias-bg-base: #130a0d;')
   })
 })
