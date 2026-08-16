@@ -22,6 +22,10 @@ dsh plugin --profile web add https://github.com/unpain/dsh-skin-asuka.git
 
 After installation, select `dsh-skin-asuka` under `Settings > Skins`.
 
+## Related project
+
+If you'd like to manage and switch skins in DSH Web, see the companion skin manager from the same author: [`dsh-skin-switch`](https://github.com/unpain/dsh-skin-switch).
+
 ## Development
 
 ```sh
