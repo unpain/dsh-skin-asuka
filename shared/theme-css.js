@@ -364,7 +364,7 @@ body[data-dsh-asuka-interface] [data-composer-card]::after {
 }
 
 body[data-dsh-asuka-interface] [data-phase='hero'] [data-composer-card] {
-  min-height: 168px;
+  min-height: 144px;
   background:
     linear-gradient(120deg, rgba(255,255,255,0.5), transparent 32%),
     rgba(251, 246, 241, 0.76);
