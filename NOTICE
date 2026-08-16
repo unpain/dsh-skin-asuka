@@ -1,0 +1,8 @@
+This is an unofficial fan-made DSH interface skin.
+
+Asuka Langley and Neon Genesis Evangelion are properties of their respective
+rights holders. The character artwork in assets/asuka-unit-02-cutout.* was
+created with OpenAI Image generation for this theme.
+
+The DSH skin integration follows the public client-plugin and skin-manager
+contracts used by dsh-web-ui and dsh-skin-switch.

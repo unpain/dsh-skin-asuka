@@ -1,0 +1,4 @@
+# Registers the browser-only Asuka skin with the DSH web profile.
+- insert:
+    - id: ui-skin-asuka-interface
+      name: 'dsh-skin-asuka'
