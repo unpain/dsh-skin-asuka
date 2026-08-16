@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Asuka Unit-02 Interface Preview</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+    body {
+      --bg: #0c0709;
+      --panel: rgba(24, 13, 16, .9);
+      --panel-2: rgba(49, 23, 29, .92);
+      --text: #f7ecea;
+      --muted: #ad8b8e;
+      --line: rgba(255, 75, 65, .36);
+      color: var(--text);
+      background:
+        linear-gradient(rgba(10, 6, 8, .76), rgba(17, 8, 11, .94)),
+        repeating-linear-gradient(90deg, rgba(255, 65, 55, .09) 0 1px, transparent 1px 72px),
+        repeating-linear-gradient(0deg, rgba(255, 65, 55, .07) 0 1px, transparent 1px 72px),
+        radial-gradient(circle at 77% 40%, rgba(239, 32, 35, .31), transparent 42%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+    }
+    body.light {
+      --bg: #e9e2dc;
+      --panel: rgba(250, 247, 242, .92);
+      --panel-2: rgba(241, 234, 228, .94);
+      --text: #2a171a;
+      --muted: #87696c;
+      --line: rgba(164, 28, 36, .3);
+      background:
+        linear-gradient(rgba(255,255,255,.6), rgba(231,220,214,.82)),
+        repeating-linear-gradient(90deg, rgba(100,18,24,.06) 0 1px, transparent 1px 72px),
+        repeating-linear-gradient(0deg, rgba(100,18,24,.05) 0 1px, transparent 1px 72px),
+        radial-gradient(circle at 77% 40%, rgba(255,59,48,.2), transparent 40%);
+    }
+    .shell { display: grid; grid-template-columns: 280px 1fr; height: 100%; }
+    .sidebar {
+      position: relative; z-index: 6; padding: 18px 14px 16px; overflow: hidden;
+      color: #f7ecea; border-right: 1px solid rgba(255,75,64,.6);
+      background:
+        radial-gradient(circle at 50% 14%, rgba(183,24,29,.25), transparent 34%),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0 1px, transparent 1px 5px),
+        linear-gradient(180deg, #181013, #0b0709 72%);
+      box-shadow: 10px 0 36px rgba(20,0,4,.28), inset -3px 0 rgba(127,15,24,.52);
+    }
+    .sidebar::after {
+      content: 'UNIT 02'; position: absolute; right: -54px; bottom: 180px;
+      color: rgba(255,69,58,.08); font: 900 68px/1 Arial; transform: rotate(-90deg);
+    }
+    .brand { display: flex; align-items: center; gap: 11px; height: 38px; font-weight: 800; }
+    .brand-mark { display: grid; place-items: center; width: 34px; height: 25px; border: 1px solid #ff5a50; background: #c51f20; font: 900 12px ui-monospace; }
+    .brand-copy { display: grid; gap: 3px; }
+    .brand-copy small { color: #a47e81; font: 700 8px ui-monospace; letter-spacing: .16em; }
+    .new-task { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 41px; margin: 18px 0 20px; border: 1px solid #fa5b50; border-radius: 7px; color: white; background: linear-gradient(#d62a27,#9f171d); font-weight: 750; box-shadow: 0 7px 18px rgba(119,9,17,.28); }
+    .section-label { margin: 18px 8px 8px; color: #8f6d70; font: 700 9px ui-monospace; letter-spacing: .16em; }
+    .row { display: flex; align-items: center; gap: 10px; height: 39px; padding: 0 10px; border-radius: 6px; color: #cdb5b7; font-size: 13px; }
+    .row svg { width: 16px; color: #987578; }
+    .row.active { position: relative; border-left: 2px solid #ff3b30; color: #fff; background: linear-gradient(90deg,rgba(255,59,48,.22),transparent); }
+    .row.active::after { content: ''; position: absolute; right: 10px; width: 5px; height: 5px; border-radius: 50%; background: #9bf00b; box-shadow: 0 0 9px #9bf00b; }
+    .profile { position: absolute; right: 14px; bottom: 18px; left: 14px; display: flex; align-items: center; gap: 10px; padding-top: 14px; border-top: 1px solid rgba(255,88,76,.16); }
+    .avatar { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid #8f242a; border-radius: 50%; color: #fff; background: #3b171c; font: 800 10px ui-monospace; }
+    .main { position: relative; z-index: 3; min-width: 0; }
+    .alert { position: absolute; z-index: 8; top: 0; right: 0; left: 0; height: 6px; background: repeating-linear-gradient(135deg,#ff4439 0 20px,#1a0b0e 20px 40px); box-shadow: 0 2px 14px rgba(255,45,40,.42); }
+    .status { position: absolute; z-index: 8; top: 16px; right: 22px; padding: 6px 10px; border: 1px solid rgba(255,83,72,.5); color: #ffb7b0; background: rgba(18,7,9,.78); font: 700 9px ui-monospace; letter-spacing: .16em; }
+    .topbar { position: relative; z-index: 5; display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 12px 26px 0; border-bottom: 1px solid var(--line); background: linear-gradient(90deg,rgba(18,8,10,.94),rgba(71,10,16,.82) 58%,rgba(18,8,10,.86)); box-shadow: 0 8px 24px rgba(32,2,6,.14); }
+    .topbar nav { display: flex; gap: 24px; height: 100%; align-items: center; }
+    .tab { align-self: stretch; display: flex; align-items: center; color: #bd999b; font-size: 12px; }
+    .tab.active { border-bottom: 2px solid #ff3b30; color: #fff; }
+    .meta { color: #a98083; font: 700 9px ui-monospace; letter-spacing: .12em; }
+    .stage { position: absolute; inset: 64px 0 0; overflow: hidden; }
+    .ring { position: absolute; right: 3vw; top: 46%; width: min(49vw,660px); aspect-ratio: 1; border: 1px solid rgba(255,61,51,.35); border-radius: 50%; background: conic-gradient(from 14deg,transparent 0 8deg,rgba(255,59,48,.7) 8deg 9deg,transparent 9deg 28deg),radial-gradient(circle,transparent 0 48%,rgba(255,59,48,.12) 48.2% 48.7%,transparent 49% 62%,rgba(155,240,11,.14) 62.2% 62.7%,transparent 63%); transform: translate(22%,-50%) rotate(-14deg); }
+    .character { position: absolute; z-index: 2; right: -36px; bottom: -20px; height: 92%; filter: drop-shadow(-18px 18px 30px rgba(35,0,5,.42)); }
+    .hero { position: absolute; z-index: 4; top: 46%; left: 43%; width: min(54vw,730px); transform: translate(-50%,-50%); }
+    .eyebrow { display: flex; align-items: center; gap: 10px; color: #df332f; font: 800 10px ui-monospace; letter-spacing: .18em; }
+    .eyebrow::before { content: ''; width: 35px; height: 2px; background: #e52a27; }
+    h1 { margin: 12px 0 8px; max-width: 560px; color: var(--text); font: 850 clamp(35px,4vw,58px)/1.02 ui-monospace,monospace; letter-spacing: -.045em; }
+    .subtitle { max-width: 520px; margin-bottom: 28px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .composer { position: relative; width: min(55vw,710px); min-height: 150px; padding: 27px 22px 16px; border: 1px solid rgba(229,37,33,.58); border-radius: 10px; background: linear-gradient(120deg,rgba(255,87,74,.08),transparent 32%),var(--panel); box-shadow: 0 20px 58px rgba(0,0,0,.32),inset 0 1px rgba(255,255,255,.2); backdrop-filter: blur(18px); }
+    .composer::before { content: '02'; position: absolute; top: -14px; left: 18px; padding: 4px 9px; border: 1px solid #ff5e54; color: #fff7f5; background: #b9181d; font: 900 10px ui-monospace; letter-spacing: .12em; }
+    .composer::after { content: ''; position: absolute; inset: -1px; pointer-events: none; border-radius: inherit; background: linear-gradient(90deg,#ff3b30 0 42px,transparent 42px calc(100% - 42px),#ff3b30 calc(100% - 42px)) bottom/100% 2px no-repeat; }
+    .placeholder { color: var(--muted); font-size: 13px; }
+    .toolbar { position: absolute; right: 16px; bottom: 14px; left: 16px; display: flex; align-items: center; justify-content: space-between; }
+    .tools { display: flex; align-items: center; gap: 8px; }
+    .icon-button { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid var(--line); border-radius: 7px; color: var(--muted); background: var(--panel-2); }
+    .icon-button svg { width: 15px; }
+    .model { padding: 8px 11px; border: 1px solid var(--line); border-radius: 7px; color: var(--muted); background: var(--panel-2); font: 700 10px ui-monospace; }
+    .send { display: grid; place-items: center; width: 34px; height: 34px; border: 0; border-radius: 7px; color: white; background: linear-gradient(#f24238,#ba1b20); box-shadow: 0 5px 14px rgba(137,8,16,.3); }
+    .send svg { width: 16px; }
+    .light .topbar { color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">02</span><span class="brand-copy">DeepSeek Harness<small>COMMAND INTERFACE</small></span></div>
+      <button class="new-task">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        新建任务
+      </button>
+      <div class="section-label">WORKSPACES</div>
+      <div class="row active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h7l2 2h9v10H3z"/></svg>dsh / asuka-interface</div>
+      <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4zM8 9h8M8 13h5"/></svg>明日香皮肤设计</div>
+      <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 8v5l3 2"/></svg>最近任务</div>
+      <div class="section-label">SYSTEM</div>
+      <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.5-2.4 1A7 7 0 0 0 15 6l-.3-2.6h-4L10.4 6A7 7 0 0 0 8 7L5.6 6l-2 3.5 2 1.5a7 7 0 0 0 0 2l-2 1.5 2 3.5L8 17a7 7 0 0 0 2.4 1l.3 2.6h4L15 18a7 7 0 0 0 2.4-1l2.4 1 2-3.5-2-1.5a7 7 0 0 0 .2-1z"/></svg>设置</div>
+      <div class="profile"><span class="avatar">YM</span><span style="font-size:12px">本地指挥员</span></div>
+    </aside>
+    <main class="main">
+      <div class="alert"></div><div class="status">UNIT-02 // COMMAND INTERFACE</div>
+      <header class="topbar"><nav><span class="tab active">对话</span><span class="tab">轨迹</span><span class="tab">检查</span></nav><span class="meta">LCL LINK / STABLE</span></header>
+      <section class="stage"><div class="ring"></div><img class="character" src="../assets/asuka-unit-02-cutout.webp" alt=""></section>
+      <section class="hero">
+        <div class="eyebrow">EVA UNIT-02 ONLINE</div>
+        <h1>今天要攻克什么？</h1>
+        <p class="subtitle">作战界面已连接。描述目标，明日香主题会把任务、工具与运行状态收束到同一套清晰的驾驶舱层级中。</p>
+        <div class="composer"><span class="placeholder">给 DSH 一个明确的任务...</span><div class="toolbar"><div class="tools"><span class="icon-button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span><span class="model">GPT-5.6-LUNA / MAX</span></div><button class="send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></button></div></div>
+      </section>
+    </main>
+  </div>
+  <script>if (new URLSearchParams(location.search).get('theme') === 'light') document.body.classList.add('light')</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "id": "dsh-skin-asuka",
+  "name": "dsh-skin-asuka",
+  "nameEn": "dsh-skin-asuka",
+  "author": "Local DSH theme",
+  "tagline": "警戒红、插入栓 HUD 与二号机作战界面",
+  "description": "一套面向 DSH Web UI 的明日香主题皮肤：以 UNIT-02 的信号红、碳黑装甲、同步率绿和驾驶舱 HUD 构成界面，并让角色立绘在欢迎页与对话页之间自适应退让。",
+  "tags": [
+    "anime",
+    "asuka",
+    "unit-02",
+    "red",
+    "hud",
+    "cockpit"
+  ],
+  "accent": "#ff3b30",
+  "bodyAttr": "data-dsh-asuka-interface",
+  "package": "dsh-skin-asuka",
+  "wiring": {
+    "id": "ui-skin-asuka-interface",
+    "bundleWired": false
+  },
+  "preview": {
+    "light": "preview/light.webp",
+    "dark": "preview/dark.webp"
+  },
+  "order": 2
+}
