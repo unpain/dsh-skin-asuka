@@ -189,7 +189,7 @@ export function apply(ctx) {
     id: SKIN_ID,
     name: 'dsh-skin-asuka',
     description: '警戒红、插入栓 HUD 与 UNIT-02 作战界面。',
-    author: 'Local DSH theme',
+    author: 'yujimaka',
     preview: ASUKA_CHARACTER,
     order: 2,
     activate: () => mountManagedSkin(ctx),

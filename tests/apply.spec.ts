@@ -85,10 +85,10 @@ describe('Asuka interface skin', () => {
   })
 
   it('registers without changing the page before selection', () => {
-    let registered: { id: string; name: string } | undefined
+    let registered: { id: string; name: string; author: string } | undefined
     const ctx = {
       skinManager: {
-        register(definition: { id: string; name: string }) {
+        register(definition: { id: string; name: string; author: string }) {
           registered = definition
           return () => undefined
         },
@@ -102,6 +102,7 @@ describe('Asuka interface skin', () => {
     expect(registered).toMatchObject({
       id: 'dsh-skin-asuka',
       name: 'dsh-skin-asuka',
+      author: 'yujimaka',
     })
     expect(document.body.hasAttribute('data-dsh-asuka-interface')).toBe(false)
   })
