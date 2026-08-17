@@ -21,6 +21,7 @@ afterEach(() => {
   dispose = undefined
   document.body.innerHTML = ''
   document.head.querySelectorAll('[data-skin-owner]').forEach(node => node.remove())
+  document.head.querySelectorAll('[data-test-fixture]').forEach(node => node.remove())
   vi.restoreAllMocks()
 })
 
@@ -54,6 +55,33 @@ describe('Asuka interface skin', () => {
     dispose = undefined
     expect(document.body.hasAttribute('data-dsh-asuka-interface')).toBe(false)
     expect(document.querySelectorAll("[data-skin-owner='asuka-interface']")).toHaveLength(0)
+  })
+
+  it('restores the original favicon when the skin is retracted', () => {
+    vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) => {
+      callback(0)
+      return 1
+    })
+    vi.stubGlobal('cancelAnimationFrame', vi.fn())
+    const original = document.createElement('link')
+    const marker = document.createElement('meta')
+    original.rel = 'icon'
+    original.href = '/favicon.ico'
+    original.dataset.testFixture = ''
+    marker.dataset.testFixture = ''
+    document.head.append(original, marker)
+
+    activateSkin(context() as never)
+
+    expect(original.isConnected).toBe(false)
+    expect(document.head.querySelector("[data-skin-chrome='asuka-favicon']")).not.toBeNull()
+
+    dispose?.()
+    dispose = undefined
+    expect(document.head.querySelector("[data-skin-chrome='asuka-favicon']")).toBeNull()
+    expect(original.isConnected).toBe(true)
+    expect(original.nextSibling).toBe(marker)
+    expect(original.href).toBe(new URL('/favicon.ico', document.baseURI).href)
   })
 
   it('registers without changing the page before selection', () => {

@@ -51,6 +51,32 @@ function createFavicon() {
   return favicon
 }
 
+/** Reinsert the host icons on cleanup so browsers actively select them again. */
+function installFavicon() {
+  const head = document.head
+  const originals = Array.from(head.querySelectorAll('link[rel]'))
+    .filter(node => node.relList.contains('icon'))
+    .map(node => ({ node, nextSibling: node.nextSibling }))
+
+  for (const { node } of originals) node.remove()
+
+  const favicon = createFavicon()
+  head.append(favicon)
+
+  return {
+    favicon,
+    restore() {
+      favicon.remove()
+      for (let index = originals.length - 1; index >= 0; index -= 1) {
+        const { node, nextSibling } = originals[index]
+        if (node.isConnected) continue
+        const anchor = nextSibling?.parentNode === head ? nextSibling : null
+        head.insertBefore(node, anchor)
+      }
+    },
+  }
+}
+
 /** Title bars mount late in desktop shells, so decoration is idempotent. */
 function decorateTitlebar(ownedNodes) {
   const titlebar = document.querySelector("[class*='titlebar']")
@@ -106,6 +132,7 @@ export function activateSkin(ctx) {
   const oldTitlebarHeight = body.style.getPropertyValue('--asuka-titlebar-height')
   const ownedNodes = new Set()
   const systemChrome = setSystemChrome()
+  let faviconState
   let observedSidebar
   let syncFrame
 
@@ -126,6 +153,7 @@ export function activateSkin(ctx) {
     resizeObserver.disconnect()
     window.removeEventListener('resize', onWindowResize)
     if (syncFrame !== undefined) cancelAnimationFrame(syncFrame)
+    faviconState?.restore()
     ownedNodes.forEach(node => node.remove())
     delete body.dataset.dshAsukaInterface
     body.style.setProperty('--asuka-sidebar-width', oldSidebarWidth)
@@ -135,7 +163,9 @@ export function activateSkin(ctx) {
   }, 'ui-skin-asuka-interface: reversible command-interface chrome')
 
   body.dataset.dshAsukaInterface = ''
-  for (const node of [createStylesheet(), createCharacterStage(), createAlertRail(), createFavicon()]) {
+  faviconState = installFavicon()
+  ownedNodes.add(faviconState.favicon)
+  for (const node of [createStylesheet(), createCharacterStage(), createAlertRail()]) {
     ownedNodes.add(node)
     if (node instanceof HTMLStyleElement || node instanceof HTMLLinkElement) document.head.append(node)
     else body.prepend(node)
