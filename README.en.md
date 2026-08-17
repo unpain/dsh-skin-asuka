@@ -4,7 +4,7 @@ English | [简体中文](README.md)
 
 An Asuka / EVA Unit-02 theme for the DSH Web UI, built around signal red, carbon-black armor panels, sync green, scan lines, and cockpit HUD details.
 
-![Dark mode preview](preview/readme.png)
+![Asuka · UNIT-02 runtime screenshot](preview/readme.png)
 
 ## Features
 
