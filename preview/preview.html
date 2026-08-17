@@ -63,7 +63,6 @@
     .avatar { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid #8f242a; border-radius: 50%; color: #fff; background: #3b171c; font: 800 10px ui-monospace; }
     .main { position: relative; z-index: 3; min-width: 0; }
     .alert { position: absolute; z-index: 8; top: 0; right: 0; left: 0; height: 6px; background: repeating-linear-gradient(135deg,#ff4439 0 20px,#1a0b0e 20px 40px); box-shadow: 0 2px 14px rgba(255,45,40,.42); }
-    .status { position: absolute; z-index: 8; top: 16px; right: 22px; padding: 6px 10px; border: 1px solid rgba(255,83,72,.5); color: #ffb7b0; background: rgba(18,7,9,.78); font: 700 9px ui-monospace; letter-spacing: .16em; }
     .topbar { position: relative; z-index: 5; display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 12px 26px 0; border-bottom: 1px solid var(--line); background: linear-gradient(90deg,rgba(18,8,10,.94),rgba(71,10,16,.82) 58%,rgba(18,8,10,.86)); box-shadow: 0 8px 24px rgba(32,2,6,.14); }
     .topbar nav { display: flex; gap: 24px; height: 100%; align-items: center; }
     .tab { align-self: stretch; display: flex; align-items: center; color: #bd999b; font-size: 12px; }
@@ -71,7 +70,7 @@
     .meta { color: #a98083; font: 700 9px ui-monospace; letter-spacing: .12em; }
     .stage { position: absolute; inset: 64px 0 0; overflow: hidden; }
     .ring { position: absolute; right: 3vw; top: 46%; width: min(49vw,660px); aspect-ratio: 1; border: 1px solid rgba(255,61,51,.35); border-radius: 50%; background: conic-gradient(from 14deg,transparent 0 8deg,rgba(255,59,48,.7) 8deg 9deg,transparent 9deg 28deg),radial-gradient(circle,transparent 0 48%,rgba(255,59,48,.12) 48.2% 48.7%,transparent 49% 62%,rgba(155,240,11,.14) 62.2% 62.7%,transparent 63%); transform: translate(22%,-50%) rotate(-14deg); }
-    .character { position: absolute; z-index: 2; right: -36px; bottom: -20px; height: 92%; filter: drop-shadow(-18px 18px 30px rgba(35,0,5,.42)); }
+    .character { position: absolute; z-index: 2; right: clamp(18px,2vw,36px); bottom: clamp(12px,1.6vh,20px); width: auto; height: min(88vh,920px); max-width: calc(100% - 24px); object-fit: contain; filter: drop-shadow(-18px 18px 30px rgba(35,0,5,.42)); }
     .hero { position: absolute; z-index: 4; top: 46%; left: 43%; width: min(54vw,730px); transform: translate(-50%,-50%); }
     .eyebrow { display: flex; align-items: center; gap: 10px; color: #df332f; font: 800 10px ui-monospace; letter-spacing: .18em; }
     .eyebrow::before { content: ''; width: 35px; height: 2px; background: #e52a27; }
@@ -108,7 +107,7 @@
       <div class="profile"><span class="avatar">YM</span><span style="font-size:12px">本地指挥员</span></div>
     </aside>
     <main class="main">
-      <div class="alert"></div><div class="status">UNIT-02 // COMMAND INTERFACE</div>
+      <div class="alert"></div>
       <header class="topbar"><nav><span class="tab active">对话</span><span class="tab">轨迹</span><span class="tab">检查</span></nav><span class="meta">LCL LINK / STABLE</span></header>
       <section class="stage"><div class="ring"></div><img class="character" src="../assets/asuka-unit-02-cutout.webp" alt=""></section>
       <section class="hero">

@@ -112,4 +112,12 @@ describe('Asuka interface skin', () => {
     expect(ASUKA_CSS).toContain('--dsw-alias-bg-base: #f5efea;')
     expect(ASUKA_CSS).toContain('--dsw-alias-bg-base: #130a0d;')
   })
+
+  it('keeps the hero artwork inside the viewport without the corner status label', () => {
+    expect(ASUKA_CSS).toContain('right: clamp(18px, 2vw, 36px);')
+    expect(ASUKA_CSS).toContain('bottom: clamp(12px, 1.6vh, 20px);')
+    expect(ASUKA_CSS).toContain('height: min(88vh, 920px);')
+    expect(ASUKA_CSS).toContain('prefers-reduced-motion: reduce')
+    expect(ASUKA_CSS).not.toContain('UNIT-02 // COMMAND INTERFACE')
+  })
 })

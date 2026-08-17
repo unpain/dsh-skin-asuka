@@ -110,10 +110,12 @@ body[data-dsh-asuka-interface] [data-skin-chrome='asuka-character-stage'] {
 
 body[data-dsh-asuka-interface] [data-asuka-character] {
   position: absolute;
-  right: clamp(-120px, -4vw, -28px);
-  bottom: -2.5vh;
+  right: clamp(18px, 2vw, 36px);
+  bottom: clamp(12px, 1.6vh, 20px);
   width: auto;
-  height: min(94vh, 1040px);
+  height: min(88vh, 920px);
+  max-width: calc(100vw - var(--asuka-sidebar-width) - 24px);
+  object-fit: contain;
   opacity: 0.96;
   filter: drop-shadow(-18px 18px 30px rgba(35, 0, 5, 0.38));
   transform-origin: right bottom;
@@ -157,20 +159,6 @@ body[data-dsh-asuka-interface] [data-skin-chrome='asuka-alert-rail'] {
   background: repeating-linear-gradient(135deg, #ff4439 0 20px, #1a0b0e 20px 40px);
   box-shadow: 0 2px 14px rgba(255, 45, 40, 0.42);
   transition: left 180ms ease;
-}
-
-body[data-dsh-asuka-interface] [data-skin-chrome='asuka-alert-rail']::after {
-  content: 'UNIT-02 // COMMAND INTERFACE';
-  position: absolute;
-  top: 10px;
-  right: 22px;
-  padding: 5px 10px 4px;
-  border: 1px solid rgba(255, 83, 72, 0.5);
-  color: #ffb7b0;
-  background: rgba(18, 7, 9, 0.78);
-  font: 700 10px/1.1 ui-monospace, SFMono-Regular, Menlo, monospace;
-  letter-spacing: 0.16em;
-  backdrop-filter: blur(8px);
 }
 
 body[data-dsh-asuka-interface] [data-skin-chrome='asuka-titlebar-brand'] {
@@ -515,8 +503,9 @@ body[data-dsh-asuka-interface] ::-webkit-scrollbar-thumb {
 
 @media (max-width: 1180px) {
   body[data-dsh-asuka-interface] [data-asuka-character] {
-    right: -170px;
-    height: 86vh;
+    right: clamp(12px, 2vw, 24px);
+    bottom: 12px;
+    height: 82vh;
     opacity: 0.58;
   }
 
