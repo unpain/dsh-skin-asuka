@@ -120,4 +120,13 @@ describe('Asuka interface skin', () => {
     expect(ASUKA_CSS).toContain('prefers-reduced-motion: reduce')
     expect(ASUKA_CSS).not.toContain('UNIT-02 // COMMAND INTERFACE')
   })
+
+  it('keeps active-chat artwork recognizable on wide screens and progressively quieter on narrow screens', () => {
+    expect(ASUKA_CSS).toContain(":has(:is([data-phase='active'][data-chat-flow], [data-phase='active'] [data-chat-flow])) [data-asuka-character]")
+    expect(ASUKA_CSS).toContain('opacity: 0.16;')
+    expect(ASUKA_CSS).toContain('saturate(0.62)')
+    expect(ASUKA_CSS).toContain('opacity: 0.1;')
+    expect(ASUKA_CSS).toContain('opacity: 0.08;')
+    expect(ASUKA_CSS).toContain('opacity: 0.05;')
+  })
 })

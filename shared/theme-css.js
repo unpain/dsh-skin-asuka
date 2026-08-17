@@ -138,13 +138,13 @@ body[data-dsh-asuka-interface] [data-asuka-hud-ring] {
   animation: asuka-hud-rotate 28s linear infinite;
 }
 
-body[data-dsh-asuka-interface]:has([data-phase='active'] [data-chat-flow]) [data-asuka-character] {
+body[data-dsh-asuka-interface]:has(:is([data-phase='active'][data-chat-flow], [data-phase='active'] [data-chat-flow])) [data-asuka-character] {
   opacity: 0.16;
-  filter: saturate(0.72) drop-shadow(-12px 14px 22px rgba(35, 0, 5, 0.28));
+  filter: saturate(0.62) drop-shadow(-12px 14px 22px rgba(35, 0, 5, 0.28));
   transform: translateX(17%) scale(0.94);
 }
 
-body[data-dsh-asuka-interface]:has([data-phase='active'] [data-chat-flow]) [data-asuka-hud-ring] {
+body[data-dsh-asuka-interface]:has(:is([data-phase='active'][data-chat-flow], [data-phase='active'] [data-chat-flow])) [data-asuka-hud-ring] {
   opacity: 0.26;
 }
 
@@ -513,6 +513,10 @@ body[data-dsh-asuka-interface] ::-webkit-scrollbar-thumb {
     right: 60px;
     width: 540px;
   }
+
+  body[data-dsh-asuka-interface]:has(:is([data-phase='active'][data-chat-flow], [data-phase='active'] [data-chat-flow])) [data-asuka-character] {
+    opacity: 0.1;
+  }
 }
 
 @media (max-width: 880px) {
@@ -525,8 +529,18 @@ body[data-dsh-asuka-interface] ::-webkit-scrollbar-thumb {
     opacity: 0.18;
   }
 
+  body[data-dsh-asuka-interface]:has(:is([data-phase='active'][data-chat-flow], [data-phase='active'] [data-chat-flow])) [data-asuka-character] {
+    opacity: 0.08;
+  }
+
   body[data-dsh-asuka-interface] [data-phase='hero'] {
     --dsh-chat-content-width: min(90vw, 680px);
+  }
+}
+
+@media (max-width: 620px) {
+  body[data-dsh-asuka-interface]:has(:is([data-phase='active'][data-chat-flow], [data-phase='active'] [data-chat-flow])) [data-asuka-character] {
+    opacity: 0.05;
   }
 }
 
