@@ -1,7 +1,7 @@
 {
   "name": "dsh-skin-asuka",
   "description": "Hot-pluggable Unit-02 command-interface skin for the DSH web UI",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": true,
   "type": "module",
   "main": "lib/index.js",

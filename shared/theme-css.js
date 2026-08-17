@@ -48,7 +48,7 @@ body[data-dsh-asuka-interface] {
   --dsw-shadow-lv2: var(--asuka-shadow);
   --dsw-specific-input-major: rgba(255, 251, 246, 0.9);
   --dsw-specific-selector: rgba(242, 230, 225, 0.94);
-  --dsw-specific-sidebar-fill: rgba(20, 11, 13, 0.97);
+  --dsw-specific-sidebar-fill: rgba(243, 235, 229, 0.98);
 }
 
 body[data-dsh-asuka-interface][data-ds-dark-theme] {
@@ -186,6 +186,23 @@ body[data-dsh-asuka-interface] [data-skin-chrome='asuka-titlebar-brand']::before
 }
 
 body[data-dsh-asuka-interface] :is([data-pane='sidebar'], [class*='sidebarCol']) {
+  --dsw-alias-label-primary: #2a171a;
+  --dsw-alias-label-secondary: #6f4e52;
+  --dsw-alias-label-tertiary: #907276;
+  --dsw-alias-label-caption: #a78c8e;
+  --dsw-alias-border-l1: rgba(127, 15, 24, 0.16);
+  --dsw-alias-border-l2: rgba(127, 15, 24, 0.28);
+  --dsw-alias-interactive-bg-hover: rgba(229, 37, 33, 0.09);
+  --dsw-alias-interactive-bg-active: rgba(229, 37, 33, 0.16);
+  position: relative;
+  z-index: 6;
+  border-right: 1px solid rgba(127, 15, 24, 0.28);
+  color: #2a171a;
+  background: #f3ebe5;
+  box-shadow: 10px 0 36px rgba(63, 8, 14, 0.1), inset -3px 0 rgba(127, 15, 24, 0.14);
+}
+
+body[data-dsh-asuka-interface][data-ds-dark-theme] :is([data-pane='sidebar'], [class*='sidebarCol']) {
   --dsw-alias-label-primary: #f7ecea;
   --dsw-alias-label-secondary: #d9bdbe;
   --dsw-alias-label-tertiary: #ad8a8d;
@@ -194,9 +211,7 @@ body[data-dsh-asuka-interface] :is([data-pane='sidebar'], [class*='sidebarCol'])
   --dsw-alias-border-l2: rgba(255, 82, 72, 0.28);
   --dsw-alias-interactive-bg-hover: rgba(255, 88, 76, 0.1);
   --dsw-alias-interactive-bg-active: rgba(255, 59, 48, 0.24);
-  position: relative;
-  z-index: 6;
-  border-right: 1px solid rgba(255, 75, 64, 0.55);
+  border-right-color: rgba(255, 75, 64, 0.55);
   color: #f7ecea;
   background: #0d080a;
   box-shadow: 10px 0 36px rgba(20, 0, 4, 0.28), inset -3px 0 rgba(127, 15, 24, 0.52);
@@ -205,6 +220,14 @@ body[data-dsh-asuka-interface] :is([data-pane='sidebar'], [class*='sidebarCol'])
 body[data-dsh-asuka-interface] :is([data-pane='sidebar'], [class*='sidebarCol']) > div {
   position: relative;
   overflow: hidden;
+  background:
+    linear-gradient(100deg, transparent 0 86%, rgba(127, 15, 24, 0.06) 86% 87%, transparent 87%),
+    radial-gradient(circle at 50% 14%, rgba(229, 37, 33, 0.1), transparent 34%),
+    repeating-linear-gradient(0deg, rgba(127, 15, 24, 0.018) 0 1px, transparent 1px 5px),
+    linear-gradient(180deg, #f7f0ea, #e9ddd7 72%);
+}
+
+body[data-dsh-asuka-interface][data-ds-dark-theme] :is([data-pane='sidebar'], [class*='sidebarCol']) > div {
   background:
     linear-gradient(100deg, transparent 0 86%, rgba(255, 64, 54, 0.08) 86% 87%, transparent 87%),
     radial-gradient(circle at 50% 14%, rgba(183, 24, 29, 0.24), transparent 34%),
@@ -218,11 +241,15 @@ body[data-dsh-asuka-interface] :is([data-pane='sidebar'], [class*='sidebarCol'])
   right: -18px;
   bottom: 124px;
   z-index: 0;
-  color: rgba(255, 69, 58, 0.08);
+  color: rgba(127, 15, 24, 0.08);
   font: 900 54px/1 Arial, sans-serif;
   letter-spacing: -0.08em;
   transform: rotate(-90deg);
   pointer-events: none;
+}
+
+body[data-dsh-asuka-interface][data-ds-dark-theme] :is([data-pane='sidebar'], [class*='sidebarCol']) > div::before {
+  color: rgba(255, 69, 58, 0.08);
 }
 
 body[data-dsh-asuka-interface] :is([data-pane='sidebar'], [class*='sidebarCol']) > div > * {
@@ -231,6 +258,11 @@ body[data-dsh-asuka-interface] :is([data-pane='sidebar'], [class*='sidebarCol'])
 }
 
 body[data-dsh-asuka-interface] button[class*='brand'] > svg {
+  color: #7f0f18;
+  filter: drop-shadow(0 0 8px rgba(127, 15, 24, 0.16));
+}
+
+body[data-dsh-asuka-interface][data-ds-dark-theme] button[class*='brand'] > svg {
   color: #f7ecea;
   filter: drop-shadow(0 0 8px rgba(255, 55, 45, 0.24));
 }
